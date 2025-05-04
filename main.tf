@@ -33,7 +33,7 @@ resource "aws_nat_gateway" "nat" {
 }
 
 resource "aws_eip" "nat"{
-  vpc = true
+  domain = "vpc"
 }
 
 # Create a route table
