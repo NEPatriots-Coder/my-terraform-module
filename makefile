@@ -59,6 +59,13 @@ install_choco:
 	choco install $(CHOCOLATEY_PACKAGES)
 	# checkov
 
+install_apt:
+	sudo apt-get update
+	sudo apt-get install -y $(APT_PACKAGES) golang 
+	curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash 
+	go install github.com/terraform-docs/terraform-docs@latest
+	pip install checkov pre-commit
+	curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin
 
 #
 # Testing Workspace Setup
