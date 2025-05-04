@@ -86,6 +86,9 @@ resource "aws_instance" "hello_world" {
   subnet_id              = aws_subnet.public.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.instance.id]
+  metadata_options {
+    http_tokens = "required" # Fix for AVD-AWS-0130
+  }
 
   root_block_device {
     encrypted = true # Fix for AVD-AWS-0131
