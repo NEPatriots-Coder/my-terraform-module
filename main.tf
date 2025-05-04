@@ -20,11 +20,20 @@ resource "aws_internet_gateway" "gw" {
 resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.0.1.0/24"
-  map_public_ip_on_launch = true # TODO: Set to false and add NAT gateway for production
+  map_public_ip_on_launch = false # TODO: Set to false and add NAT gateway for production
   availability_zone       = "us-east-1a"
   tags = {
     Name = "hello-world-subnet"
   }
+}
+
+resource "aws_nat_gateway" "nat" {
+  allocation_id = aws_eip.nat.id
+  subnet_id = aws_subnet.public.id
+}
+
+resource "aws_eip" nat"{
+  vpc = true
 }
 
 # Create a route table
