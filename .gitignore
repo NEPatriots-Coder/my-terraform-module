@@ -69,3 +69,6 @@ __pycache__/
 # Ignore any OS-generated files
 .DS_Store
 Thumbs.db
+*.zip
+*.tar.gz
+*.tgz

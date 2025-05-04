@@ -1,15 +1,15 @@
-# Find latest Ubuntu AMI
-data "aws_ami" "ubuntu" {
-  owners      = ["099720109477"] # Canonical
-  most_recent = true
+output "ami_id" {
+  description = "The ID of the AMI used for the EC2 instance"
+  value       = data.aws_ami.ubuntu.id
+}
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
+# If you need other outputs, keep those too
+output "instance_id" {
+  description = "The ID of the EC2 instance"
+  value       = aws_instance.hello_world.id
+}
 
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-  }
+output "instance_public_ip" {
+  description = "The public IP of the EC2 instance"
+  value       = aws_instance.hello_world.public_ip
 }
