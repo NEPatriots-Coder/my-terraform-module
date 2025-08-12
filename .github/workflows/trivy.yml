@@ -10,7 +10,7 @@ jobs:
 
     steps:
       # Checkout the source code
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         name: Checkout source code
 
       # Cache Trivy database to speed up subsequent runs
